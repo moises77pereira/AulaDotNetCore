@@ -1,10 +1,11 @@
 ﻿using AulaDotNetCore.Dominio.Entidades.ObjetoDeValor;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AulaDotNetCore.Dominio.Entidades
 {
-    public class Pedido
+    public class Pedido: Entidade
     {
         public int Id { get; set; }
         public DateTime DataPedido { get; set; }
@@ -20,5 +21,15 @@ namespace AulaDotNetCore.Dominio.Entidades
         public FormaPagamento FormaPagamento { get; set; }
 
         public ICollection<ItemPedido> ItensPedido { get; set; }
+
+        public override void Validate()
+        {
+            LimparMensagensValidacao();
+            if (!ItensPedido.Any())
+                AdicionarCritica("Crítica - Pedido não pode ficar sem item");
+
+            if(string.IsNullOrEmpty(CEP))
+                AdicionarCritica("Crítica - CEP deve ser preenchido");
+        }
     }
 }

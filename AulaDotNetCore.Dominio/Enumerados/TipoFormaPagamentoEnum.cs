@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AulaDotNetCore.Dominio.Enumerados
+﻿namespace AulaDotNetCore.Dominio.Enumerados
 {
     public enum TipoFormaPagamentoEnum
     {

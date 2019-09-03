@@ -2,7 +2,7 @@
 
 namespace AulaDotNetCore.Dominio.Entidades.ObjetoDeValor
 {
-    public class FormaPagamento
+    public class FormaPagamento : Entidade
     {
         public int Id { get; set; }
         public string Nome { get; set; }
@@ -26,6 +26,11 @@ namespace AulaDotNetCore.Dominio.Entidades.ObjetoDeValor
         public bool NaoDefinido
         {
             get { return Id == (int)TipoFormaPagamentoEnum.NaoDefinido; }
+        }
+
+        public override void Validate()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

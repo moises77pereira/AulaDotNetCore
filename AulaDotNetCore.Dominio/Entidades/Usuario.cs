@@ -2,7 +2,7 @@
 
 namespace AulaDotNetCore.Dominio.Entidades
 {
-    public class Usuario
+    public class Usuario : Entidade
     {
         public int Id { get; set; }
         public string Email { get; set; }
@@ -11,5 +11,10 @@ namespace AulaDotNetCore.Dominio.Entidades
         public string SobreNome { get; set; }
 
         public ICollection<Pedido> Pedido { get; set; }
+
+        public override void Validate()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
