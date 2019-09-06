@@ -5,7 +5,7 @@ namespace AulaDotNetCore.Dominio.Entidades
 {
     public abstract class Entidade
     {
-        public List<string> _mensagensValidacao { get; set; }
+        private List<string> _mensagensValidacao { get; set; }
 
         private List<string> mensagensValidacao
         {

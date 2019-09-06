@@ -1,0 +1,6 @@
+{
+  "ConnectionStrings": {
+    "SqlServerConnection": "",
+    "MySqlConnection": "Server=localhost;Database=AulaDotNetCore;Uid=root;Pwd=Calebe21520790;"
+  }
+}

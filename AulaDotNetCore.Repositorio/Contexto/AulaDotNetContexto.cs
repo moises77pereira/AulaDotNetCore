@@ -1,5 +1,6 @@
 ﻿using AulaDotNetCore.Dominio.Entidades;
 using AulaDotNetCore.Dominio.Entidades.ObjetoDeValor;
+using AulaDotNetCore.Repositorio.Config;
 using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +16,17 @@ namespace AulaDotNetCore.Repositorio.Contexto
 
         public AulaDotNetContexto(DbContextOptions options) : base(options)
         {
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            /// Classes de mapeamento aqui
+            modelBuilder.ApplyConfiguration(new UsuarioConfiguration());
+            modelBuilder.ApplyConfiguration(new ProdutoConfiguration());
+            modelBuilder.ApplyConfiguration(new PedidoConfiguration());
+            modelBuilder.ApplyConfiguration(new ItemPedidoConfiguration());
+            modelBuilder.ApplyConfiguration(new FormaPagamentoConfiguration());
+            base.OnModelCreating(modelBuilder); 
         }
     }
 }

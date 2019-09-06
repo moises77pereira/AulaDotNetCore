@@ -13,8 +13,4 @@
     <ProjectReference Include="..\AulaDotNetCore.Dominio\AulaDotNetCore.Dominio.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Config\" />
-  </ItemGroup>
-
 </Project>
