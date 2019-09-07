@@ -29,6 +29,9 @@ namespace AulaDotNetCore.Repositorio.Config
                 .Property(u => u.SobreNome)
                 .IsRequired()
                 .HasMaxLength(50);
+
+            builder.HasMany(u => u.Pedidos)
+                .WithOne(p => p.Usuario);
         }
     }
 }

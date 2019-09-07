@@ -28,7 +28,8 @@ namespace AulaDotNetCore.Web
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             var connctionString = Configuration.GetConnectionString("MySqlConnection");
-            services.AddDbContext<AulaDotNetContexto>(option => option.UseMySql(connctionString, m => m.MigrationsAssembly("AulaDotNetCore.Repositorio")));
+            services.AddDbContext<AulaDotNetContexto>(option => option.UseLazyLoadingProxies()                                                        
+                                                        .UseMySql(connctionString, m => m.MigrationsAssembly("AulaDotNetCore.Repositorio")));
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {

@@ -47,9 +47,10 @@ namespace AulaDotNetCore.Repositorio.Config
                 .IsRequired();
 
             builder
-                .Property(p => p.Cidade)
-                .IsRequired()
-                .HasMaxLength(50);
+                .HasMany(p => p.ItensPedido)
+                .WithOne(it => it.Pedido);
+            builder
+                .HasOne(p => p.FormaPagamento);
         }
     }
 }

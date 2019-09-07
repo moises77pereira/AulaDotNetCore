@@ -15,6 +15,10 @@ namespace AulaDotNetCore.Repositorio.Config
                 .IsRequired();
 
             builder
+                .Property(Ip => Ip.PedidoId)
+                .IsRequired();
+
+            builder
                 .Property(Ip => Ip.Quantidade)
                 .IsRequired();
         }
