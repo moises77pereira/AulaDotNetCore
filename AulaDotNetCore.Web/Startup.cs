@@ -1,4 +1,6 @@
+using AulaDotNetCore.Dominio.Contratos;
 using AulaDotNetCore.Repositorio.Contexto;
+using AulaDotNetCore.Repositorio.Repositorios;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,6 +32,9 @@ namespace AulaDotNetCore.Web
             var connctionString = Configuration.GetConnectionString("MySqlConnection");
             services.AddDbContext<AulaDotNetContexto>(option => option.UseLazyLoadingProxies()                                                        
                                                         .UseMySql(connctionString, m => m.MigrationsAssembly("AulaDotNetCore.Repositorio")));
+
+            services.AddScoped<IProdutoRepositorio, ProdutoRepositorio>();
+
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {

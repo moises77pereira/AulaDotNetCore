@@ -1,42 +1,49 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using AulaDotNetCore.Dominio.Contratos;
+using AulaDotNetCore.Repositorio.Contexto;
 
 namespace AulaDotNetCore.Repositorio.Repositorios
 {
     public class BaseRepositorio<TEntity> : IBaseRepositorio<TEntity> where TEntity : class
     {
-        public BaseRepositorio()
+        protected readonly AulaDotNetContexto AulaDotNetContexto;
+
+        public BaseRepositorio(AulaDotNetContexto aulaDotNetContexto)
         {
+            AulaDotNetContexto = aulaDotNetContexto;
         }
 
         public void Adicionar(TEntity entity)
         {
-            throw new System.NotImplementedException();
+            AulaDotNetContexto.Set<TEntity>().Add(entity);
         }
 
         public void Atualizar(TEntity entity)
         {
-            throw new System.NotImplementedException();
+            AulaDotNetContexto.Set<TEntity>().Update(entity);
+            AulaDotNetContexto.SaveChanges();
         }
-
-        public void Dispose()
-        {
-            throw new System.NotImplementedException();
-        }
-
+                
         public TEntity ObterPorId(int id)
         {
-            throw new System.NotImplementedException();
+            return AulaDotNetContexto.Set<TEntity>().Find(id);     
         }
 
         public IEnumerable<TEntity> ObterTodos()
         {
-            throw new System.NotImplementedException();
+            return AulaDotNetContexto.Set<TEntity>().ToList();
         }
 
         public void Remover(TEntity entity)
         {
-            throw new System.NotImplementedException();
+            AulaDotNetContexto.Set<TEntity>().Remove(entity);
+            AulaDotNetContexto.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+            AulaDotNetContexto.Dispose();
         }
     }
 }
