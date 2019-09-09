@@ -17,6 +17,7 @@ namespace AulaDotNetCore.Repositorio.Repositorios
         public void Adicionar(TEntity entity)
         {
             AulaDotNetContexto.Set<TEntity>().Add(entity);
+            AulaDotNetContexto.SaveChanges();
         }
 
         public void Atualizar(TEntity entity)
