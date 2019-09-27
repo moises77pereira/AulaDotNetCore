@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   public usuario;
   public returnUrl: string;
   public mensagem: string;
+  public ativar_sppiner: boolean;
   constructor(private router: Router, private activatedRouter: ActivatedRoute, private usuarioServico: UsuarioServico) {
   }
   ngOnInit(): void {
@@ -20,12 +21,14 @@ export class LoginComponent implements OnInit {
     this.usuario = new Usuario();
   }
   entrar() {
+    this.ativar_sppiner = true;
     this.usuarioServico.verificarUsuario(this.usuario).subscribe(
-      data => {
-        var usuarioRetorno: Usuario;
-        usuarioRetorno = data;
-        sessionStorage.setItem("usuario-autenticado", "1");
-        sessionStorage.setItem("email-usuario", usuarioRetorno.email);
+      usuario_json => {
+        //var usuarioRetorno: Usuario;
+        //usuarioRetorno = data;
+        //sessionStorage.setItem("usuario-autenticado", "1");
+        //sessionStorage.setItem("email-usuario", usuarioRetorno.email);
+        this.usuarioServico.usuario = usuario_json;
         if (this.returnUrl == null)
           this.router.navigate(['/']);
         else
@@ -33,14 +36,8 @@ export class LoginComponent implements OnInit {
       },
       err => {
         this.mensagem = err.error;
-        sessionStorage.setItem("usuario-autenticado", "0");
+        this.ativar_sppiner = false;
       }
     );
-    //if (this.usuario.email == "moises@gmail.com" && this.usuario.senha == "123") {
-    //  sessionStorage.setItem("usuario-autenticado", "1");
-    //  this.router.navigate([this.returnUrl]);
-    //} else {
-    //  sessionStorage.setItem("usuario-autenticado", "0");
-    //}
   }  
 }

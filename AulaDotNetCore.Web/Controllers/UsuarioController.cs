@@ -1,4 +1,5 @@
-﻿using AulaDotNetCore.Dominio.Entidades;
+﻿using AulaDotNetCore.Dominio.Contratos;
+using AulaDotNetCore.Dominio.Entidades;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -7,6 +8,11 @@ namespace AulaDotNetCore.Web.Controllers
     [Route("api/[Controller]")]
     public class UsuarioController:Controller
     {
+        private readonly IUsuarioRepositorio _usuarioRepositorio;
+        public UsuarioController(IUsuarioRepositorio usuarioRepositorio)
+        {
+            _usuarioRepositorio = usuarioRepositorio;
+        }
         [HttpGet]
         public ActionResult Get()
         {
@@ -37,8 +43,11 @@ namespace AulaDotNetCore.Web.Controllers
         {
             try
             {
-                if(usuario.Email == "moises@gmail.com" && usuario.Senha == "123")
-                    return Ok(usuario);
+                var usuarioRetorno = _usuarioRepositorio.Obter(usuario.Email, usuario.Senha);
+                if(usuarioRetorno != null)
+                    return Ok(usuarioRetorno);
+                //if (usuario.Email == "moises@gmail.com" && usuario.Senha == "123")
+                //    return Ok(usuario);
                 return BadRequest("Usuário ou senha inválido");
             }
             catch (Exception ex)
