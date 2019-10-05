@@ -22,11 +22,16 @@ namespace AulaDotNetCore.Dominio.Entidades
             mensagensValidacao.Add(mensagem);
         }
 
+        public string ObterMensagensValidacao()
+        {
+            return string.Join(". ", mensagensValidacao);
+        }
+
         public abstract void Validate();
 
-        protected bool EhValido
+        public bool EhValido
         {
-            get { return mensagensValidacao.Any(); }
+            get { return !mensagensValidacao.Any(); }
         }
     }
 }

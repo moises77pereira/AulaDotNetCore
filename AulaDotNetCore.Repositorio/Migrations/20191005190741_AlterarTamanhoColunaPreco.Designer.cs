@@ -3,14 +3,16 @@ using System;
 using AulaDotNetCore.Repositorio.Contexto;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AulaDotNetCore.Repositorio.Migrations
 {
     [DbContext(typeof(AulaDotNetContexto))]
-    partial class AulaDotNetContextoModelSnapshot : ModelSnapshot
+    [Migration("20191005190741_AlterarTamanhoColunaPreco")]
+    partial class AlterarTamanhoColunaPreco
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -132,7 +134,7 @@ namespace AulaDotNetCore.Repositorio.Migrations
                         .HasMaxLength(40);
 
                     b.Property<decimal>("Preco")
-                        .HasColumnType("decimal(19,4)");
+                        .HasColumnType("decimal(19,4");
 
                     b.HasKey("Id");
 

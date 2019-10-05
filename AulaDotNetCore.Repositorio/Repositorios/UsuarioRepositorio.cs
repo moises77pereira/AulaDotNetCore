@@ -15,5 +15,10 @@ namespace AulaDotNetCore.Repositorio.Repositorios
         {
             return AulaDotNetContexto.Usuarios.FirstOrDefault(u => u.Email == email && u.Senha == senha);
         }
+
+        public Usuario Obter(string email)
+        {
+            return AulaDotNetContexto.Usuarios.FirstOrDefault(u => u.Email == email);
+        }
     }
 }

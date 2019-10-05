@@ -3,6 +3,7 @@ using AulaDotNetCore.Repositorio.Contexto;
 using AulaDotNetCore.Repositorio.Repositorios;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
@@ -29,6 +30,7 @@ namespace AulaDotNetCore.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             var connctionString = Configuration.GetConnectionString("MySqlConnection");
             services.AddDbContext<AulaDotNetContexto>(option => option.UseLazyLoadingProxies()                                                        
                                                         .UseMySql(connctionString, m => m.MigrationsAssembly("AulaDotNetCore.Repositorio")));

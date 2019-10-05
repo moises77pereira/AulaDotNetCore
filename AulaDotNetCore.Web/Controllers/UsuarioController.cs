@@ -26,10 +26,15 @@ namespace AulaDotNetCore.Web.Controllers
             }
         }
         [HttpPost]
-        public ActionResult Post()
+        public ActionResult Post([FromBody] Usuario usuario)
         {
             try
             {
+                var usuarioRetorno = _usuarioRepositorio.Obter(usuario.Email);
+                if (usuarioRetorno != null)
+                    return BadRequest("Usuário já cadastrado");
+
+                _usuarioRepositorio.Adicionar(usuario);
                 return Ok();
             }
             catch (Exception ex)

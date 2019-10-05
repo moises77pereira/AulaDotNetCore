@@ -27,8 +27,8 @@
            name="senha" placeholder="Senha"
            class="form-control mb-2"
            [ngClass]="{
-           'is-invalid':senha.invalid && (email.dirty || email.touched),
-           'is-valid':senha.valid && (email.dirty || email.touched)
+           'is-invalid':senha.invalid && (senha.dirty || senha.touched),
+           'is-valid':senha.valid && (senha.dirty || senha.touched)
            }"
            [(ngModel)]="usuario.senha"
            #senha="ngModel"
@@ -81,6 +81,9 @@
     <br />
     <div class="alert alert-danger mb-2" *ngIf="mensagem">
       {{mensagem}}
+    </div>
+    <div class="alert alert-success" *ngIf="usuarioCadastrado">
+      Usuário cadastrado com sucesso!<a class="alert-link" [routerLink]='["/entrar"]'>Clique aqui</a> para entrar no sistema com a sua conta
     </div>
   </form>
 </div>

@@ -10,6 +10,11 @@ import { ProdutoServico } from "../servicos/produto/produto.servico";
 export class ProdutoComponent implements OnInit {
 
   public produto: Produto;
+  public arquivoSelecionado: File;
+  public ativar_spinner: boolean;
+  public mensagem: string;
+  public produtoCadastrado: boolean;
+  
 
   constructor(private produstoServico: ProdutoServico) {
 
@@ -18,15 +23,45 @@ export class ProdutoComponent implements OnInit {
     this.produto = new Produto();
   }
 
+  public inputChange(files: FileList) {
+    this.ativarSpinner();
+    this.arquivoSelecionado = files.item(0);
+    this.produstoServico.enviarArquivo(this.arquivoSelecionado).subscribe(
+      nomeArquivo => {
+        console.log(nomeArquivo);
+        this.produto.nomeArquivo = nomeArquivo;
+        this.desativarSpinner();
+      },
+      e => {
+        console.log(e.error);
+        this.desativarSpinner();
+      }
+    );    
+  }
+
   public cadastrar() {
+    this.ativarSpinner();
     this.produstoServico.cadastrar(this.produto)
       .subscribe(
         produtoJson => {
           console.log(produtoJson);
+          this.mensagem = "";
+          this.desativarSpinner();
+          this.produto = new Produto();
+          this.produtoCadastrado = true;
         },
         e => {
-          console.log(e.error);
+          this.mensagem = e.error;
+          this.desativarSpinner();
         }
-      );
+    );
+  }
+
+  public ativarSpinner() {
+    this.ativar_spinner = true;
+  }
+
+  public desativarSpinner() {
+    this.ativar_spinner = false;
   }
 }
