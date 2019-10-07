@@ -18,16 +18,16 @@ namespace AulaDotNetCore.Repositorio.Config
             builder
                 .Property(p => p.Descricao)
                 .IsRequired()
-                .HasMaxLength(400);
+                .HasMaxLength(450);
 
             builder
                 .Property(p => p.Preco)
                 .IsRequired()
-                .HasColumnType("decimal(19,4)");
+                .HasColumnType("decimal(19,2)");
 
             builder
                 .Property(p => p.NomeArquivo)
-                .HasMaxLength(40);
+                .HasMaxLength(45);
         }
     }
 }
