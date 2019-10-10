@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -28,7 +29,7 @@ namespace AulaDotNetCore.Web.Controllers
         public IActionResult Get()
         {
             try
-            {
+            {                
                 return Json(_produtoRepositorio.ObterTodos());
             }
             catch (Exception ex)
@@ -40,7 +41,7 @@ namespace AulaDotNetCore.Web.Controllers
         public IActionResult Post([FromBody]Produto produto)
         {
             try
-            {
+            {                
                 produto.Validate();
                 if (!produto.EhValido)
                 {
