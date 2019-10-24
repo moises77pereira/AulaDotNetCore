@@ -37,6 +37,19 @@ namespace AulaDotNetCore.Web.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpGet("obterProduto")]
+        public IActionResult obterProduto(int produtoId)
+        {
+            try
+            {
+                Produto produto_ = _produtoRepositorio.ObterPorId(produtoId);
+                return Json(produto_);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
+        }
         [HttpPost]
         public IActionResult Post([FromBody]Produto produto)
         {
