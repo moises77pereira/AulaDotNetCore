@@ -144,6 +144,8 @@ namespace AulaDotNetCore.Repositorio.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<bool>("EhAdministrador");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(50);

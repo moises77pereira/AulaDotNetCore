@@ -13,6 +13,7 @@ export class LojaProdutoComponent implements OnInit {
     public produto: Produto;
     public carrinhoCompras: LojaCarrinhoCompras;
     ngOnInit(): void {
+
         this.carrinhoCompras = new LojaCarrinhoCompras();
         var produtoDetalhe = sessionStorage.getItem('produtoDetalhe');
         if (produtoDetalhe) {

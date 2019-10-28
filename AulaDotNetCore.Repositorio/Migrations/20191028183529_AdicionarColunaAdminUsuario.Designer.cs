@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AulaDotNetCore.Repositorio.Migrations
 {
     [DbContext(typeof(AulaDotNetContexto))]
-    [Migration("20191005190741_AlterarTamanhoColunaPreco")]
-    partial class AlterarTamanhoColunaPreco
+    [Migration("20191028183529_AdicionarColunaAdminUsuario")]
+    partial class AdicionarColunaAdminUsuario
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -124,17 +124,17 @@ namespace AulaDotNetCore.Repositorio.Migrations
 
                     b.Property<string>("Descricao")
                         .IsRequired()
-                        .HasMaxLength(400);
+                        .HasMaxLength(450);
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(100);
 
                     b.Property<string>("NomeArquivo")
-                        .HasMaxLength(40);
+                        .HasMaxLength(45);
 
                     b.Property<decimal>("Preco")
-                        .HasColumnType("decimal(19,4)");
+                        .HasColumnType("decimal(19,2)");
 
                     b.HasKey("Id");
 
@@ -145,6 +145,8 @@ namespace AulaDotNetCore.Repositorio.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("EhAdministrador");
 
                     b.Property<string>("Email")
                         .IsRequired()

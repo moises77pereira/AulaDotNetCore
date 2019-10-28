@@ -17,5 +17,13 @@ export class GuardaRotas implements CanActivate {
     }
     this.router.navigate(['/entrar'], { queryParams: { returnUrl: state.url } });
     return false;
-   }
+    }
+    canActivate2(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+        //this.usuarioServico
+        if (this.usuarioServico.usuario_administrador()) {
+            return true;
+        }
+        this.router.navigate(['/entrar'], { queryParams: { returnUrl: state.url } });
+        return false;
+    }
 }

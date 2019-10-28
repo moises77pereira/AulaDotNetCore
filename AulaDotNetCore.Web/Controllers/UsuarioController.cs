@@ -33,7 +33,7 @@ namespace AulaDotNetCore.Web.Controllers
                 var usuarioRetorno = _usuarioRepositorio.Obter(usuario.Email);
                 if (usuarioRetorno != null)
                     return BadRequest("Usuário já cadastrado");
-
+                //usuario.EhAdministrador = true;
                 _usuarioRepositorio.Adicionar(usuario);
                 return Ok();
             }

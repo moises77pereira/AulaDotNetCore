@@ -12,7 +12,7 @@ namespace AulaDotNetCore.Repositorio.Migrations
                 type: "decimal(19,4)",
                 nullable: false,
                 oldClrType: typeof(decimal),
-                oldType: "decimal(19,4");
+                oldType: "decimal(19,4)");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -20,7 +20,7 @@ namespace AulaDotNetCore.Repositorio.Migrations
             migrationBuilder.AlterColumn<decimal>(
                 name: "Preco",
                 table: "Produtos",
-                type: "decimal(19,4",
+                type: "decimal(19,4)",
                 nullable: false,
                 oldClrType: typeof(decimal),
                 oldType: "decimal(19,4)");
