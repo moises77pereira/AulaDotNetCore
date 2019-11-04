@@ -20,6 +20,7 @@ export class LojaCarrinhoCompras {
         var produtoLocalStorage = localStorage.getItem("produtoLocalStorage");
         if (produtoLocalStorage)
             return JSON.parse(produtoLocalStorage);
+        return this.produtos;
     }
 
     public removerProduto(produto: Produto) {
@@ -36,7 +37,7 @@ export class LojaCarrinhoCompras {
     }
 
     public temItensCarrinhoCompras(): boolean {
-        var itens = this.obterProdutos();        
+        var itens = this.obterProdutos();
         return itens.length > 0;
     }
 }
