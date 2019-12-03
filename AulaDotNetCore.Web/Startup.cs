@@ -29,7 +29,9 @@ namespace AulaDotNetCore.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddJsonOptions(options=>options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             var connctionString = Configuration.GetConnectionString("MySqlConnection");
             services.AddDbContext<AulaDotNetContexto>(option => option.UseLazyLoadingProxies()                                                        
@@ -37,6 +39,7 @@ namespace AulaDotNetCore.Web
 
             services.AddScoped<IProdutoRepositorio, ProdutoRepositorio>();
             services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
+            services.AddScoped<IPedidoRepositorio, PedidoRepositorio>();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
